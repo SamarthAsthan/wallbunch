@@ -13,27 +13,27 @@ class CustomGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: CallApi().callapi(keyword),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10, bottom: 2, top: 2),
-                child: Text(
-                  title,
-                  style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 10, bottom: 2, top: 2),
+          child: Text(
+            title,
+            style: GoogleFonts.poppins(
+              textStyle: const TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
-              SizedBox(
+            ),
+          ),
+        ),
+        FutureBuilder(
+          future: CallApi().callapi(keyword),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return SizedBox(
                 height: 160,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -86,15 +86,15 @@ class CustomGridView extends StatelessWidget {
                     }
                   },
                 ),
-              ),
-            ],
-          );
-        } else {
-          return const Center(
-            child: Text("Loading"),
-          );
-        }
-      },
+              );
+            } else {
+              return const Center(
+                child: Text("Loading"),
+              );
+            }
+          },
+        ),
+      ],
     );
   }
 }

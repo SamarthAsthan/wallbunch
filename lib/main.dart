@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:wallbunch/views/gridview.dart';
-import 'package:wallbunch/views/homepage.dart';
-import 'package:wallbunch/views/itemview.dart';
+import 'package:wallbunch/mainmenu.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,16 +13,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-        scaffoldBackgroundColor: Colors.black, //<-- SEE HERE
-      ),
-      debugShowCheckedModeBanner: false,
-      home: const Scaffold(
-        backgroundColor: Colors.black,
-        body: HomePage(),
-      ),
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      builder: (BuildContext context, Widget? child) {
+        return GetMaterialApp(
+          theme: ThemeData(
+            primarySwatch: Colors.red,
+            scaffoldBackgroundColor: Colors.black, //<-- SEE HERE
+          ),
+          debugShowCheckedModeBanner: false,
+          home: const Scaffold(
+            backgroundColor: Colors.black,
+            body: MainMenu(),
+          ),
+        );
+      },
     );
   }
 }
